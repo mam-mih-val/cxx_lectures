@@ -1,0 +1,21 @@
+    MathVector( MathVector&& other ) : size_{other.size_}, vector_id_{n_vectors_} { 
+        n_vectors_++;
+        #ifdef VERBOSE
+        std::cout << "Move Constructor for id=" << vector_id_ << " from vector with id=" << other.vector_id_ << std::endl;
+        #endif // VERBOSE
+        data_ = other.data_;
+        other.data_ = nullptr;
+        other.size_ = 0;
+    }
+    MathVector& operator=( MathVector&& other ){
+        #ifdef VERBOSE
+        std::cout << "Move Assignment Operator for id=" << vector_id_ << " from vector with id=" << other.vector_id_ << std::endl;
+        #endif // VERBOSE
+        if( &other == this ) 
+            return *this;
+        delete [] data_;
+        data_ = other.data_;
+        other.data_ = nullptr;
+        other.size_ = 0;
+        return *this;
+    }
