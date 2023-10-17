@@ -1,0 +1,7 @@
+T& operator[]( size_t idx ){
+        if( idx >= N ){
+            std::cerr << "The required index is out of range" << std::endl;
+            throw std::out_of_range( __func__ );
+        }
+        return data_[idx];
+    }

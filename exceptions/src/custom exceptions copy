@@ -1,0 +1,29 @@
+    for( size_t i=0; i<4; ++i ) try {
+        std::cout << vec3[i] << ", ";
+    } catch( const MathVector<double, 3>::out_of_range& e ){
+        std::cout << "Handeled exception: " << std::endl;
+        std::cout << e.what() << std::endl;
+    }
+    std::cout << std::endl;
+
+
+    class out_of_range : public std::exception{
+        public:
+        out_of_range( std::string&& function, size_t idx ){
+            msg_ = function + "(): Requested idx="+std::to_string(idx)+" is out of range. The size of the MathVector is "+std::to_string(N);
+        }
+        const char* what() const noexcept override {
+            return msg_.c_str();
+        }
+        private:
+        size_t requrested_idx_;
+        std::string msg_;
+    };
+
+    T& operator[]( size_t idx ){
+        if( idx >= N ){
+            std::cerr << "The required index is out of range" << std::endl;
+            throw out_of_range( __func__, idx );
+        }
+        return data_[idx];
+    }
