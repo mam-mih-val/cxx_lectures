@@ -105,8 +105,12 @@ protected:
 
 
 inline double Distance( Unit* unit1, Unit* unit2 ){
-    auto [x1, y1] = unit1->GetPosition();
-    auto [x2, y2] = unit2->GetPosition();
+    auto x1 = unit1->GetPosition().at(0);
+    auto y1 = unit1->GetPosition().at(1);
+    
+    auto x2 = unit2->GetPosition().at(0);
+    auto y2 = unit2->GetPosition().at(1);
+    
     auto dx = x1 - x2;
     auto dy = y1 - y2;
     auto distance = sqrt( dx*dx + dy*dy );
@@ -119,8 +123,10 @@ public:
     ~Knight() = default;
     
     void MoveTo( Unit* unit ) override {
-        auto [curr_x, curr_y ] = position_;
-        auto [to_x, to_y ] = unit->GetPosition();
+        auto curr_x = position_.at(0);
+        auto curr_y = position_.at(1);
+        auto to_x = unit->GetPosition().at(0);
+        auto to_y = unit->GetPosition().at(1);
         auto dx = to_x - curr_x;
         auto dy = to_y - curr_y;
         if( dx != 0 )
@@ -135,8 +141,10 @@ public:
     }
     
     void RetreatFrom( Unit* unit ) override { 
-        auto [curr_x, curr_y ] = position_;
-        auto [from_x, from_y ] = unit->GetPosition();
+        auto curr_x = position_.at(0);
+        auto curr_y = position_.at(1);
+        auto from_x = unit->GetPosition().at(0);
+        auto from_y = unit->GetPosition().at(1);
         auto dx = from_x - curr_x;
         auto dy = from_y - curr_y;
         if( dx != 0 )
@@ -166,8 +174,10 @@ public:
     ~Goblin() = default;
 
     void MoveTo( Unit* unit ) override { 
-        auto [curr_x, curr_y ] = position_;
-        auto [to_x, to_y ] = unit->GetPosition();
+        auto curr_x = position_.at(0);
+        auto curr_y = position_.at(1);
+        auto to_x = unit->GetPosition().at(0);
+        auto to_y = unit->GetPosition().at(1);
         auto dx = to_x - curr_x;
         auto dy = to_y - curr_y;
         if( dx != 0 )
@@ -182,8 +192,10 @@ public:
     }
     
     void RetreatFrom( Unit* unit ) override { 
-        auto [curr_x, curr_y ] = position_;
-        auto [from_x, from_y ] = unit->GetPosition();
+        auto curr_x = position_.at(0);
+        auto curr_y = position_.at(1);
+        auto from_x = unit->GetPosition().at(0);
+        auto from_y = unit->GetPosition().at(1);
         auto dx = from_x - curr_x;
         auto dy = from_y - curr_y;
         if( dx != 0 )
