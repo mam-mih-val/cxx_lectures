@@ -1,0 +1,23 @@
+template<typename Criteria>
+Table Select( const Criteria& function ){ 
+        TableType<T, Attr> selected_rows;
+        for( const auto& row : table_  ){
+            if( function(row) ){
+                selected_rows.emplace_back( row );
+            }
+        }
+        return Table( selected_rows );
+    }
+
+auto selected_table = table.Select( []( RowType<double, 3> row ){ 
+        auto [x, y, _] = row;
+        return sqrt(x*x + y*y) < 2.0;  
+        } );
+
+    for( size_t i=0; i<selected_table.NEntries(); ++i ){
+        auto [x, y, z] = selected_table[i];
+        std::cout << std::setprecision(2) << "x=" << x << " y=" << y << " z=" << z << "\n"; 
+    }
+    std::cout << "\n"; 
+
+    
