@@ -19,7 +19,8 @@ int main(){
         vec2[i] = uniform_distribution( rnd_engine );
     }
 
-    MathVector vec3 = vec1 + vec2;
+    MathVector vec3 ;
+    vec3 = vec1 + vec2;
     MathVector vec4{ std::move(vec3) };
     // std::move() is just a cast to rvalue-reference
     // try to insert (const MathVector&) before the std::move(vec3)
